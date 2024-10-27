@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book an Appointment - Kalotti Services</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Link to the JavaScript file -->
+    <script defer src="script.js"></script> 
+</head>
+<body>
+     <!-- Navigation Bar -->
+     <nav class="navbar">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/kalotti.png" alt="Kalotti Logo" class="logo-img">
+                <span class="logo-text">Kalotti Service</span>
+            </a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu">
+            <li><a href="maintenanceservices.html" data-translate="maintenanceServices">Maintenance Services</a></li>
+            <li><a href="contact.html" data-translate="contactUs">Contact Us</a></li> 
+            <li><a href="appointment.html" data-translate="bookAppointment">Book an Appointment</a></li>
+        </ul>
+        <div class="language-selection">
+            <select>
+                <option value="en">English</option>
+                <option value="fi">Finnish</option>
+                <option value="sv">Svenska</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+     
+    <div class="main-content">
+        <!-- Booking Section -->
+        <section class="booking-section">
+            <h2>Book an Appointment</h2>
+            <form>
+                <div class="form-group">
+                    <label for="service">Service</label>
+                    <select id="service" name="service">
+                        <option value="atv-repair">ATV Repair</option>
+                        <option value="tire">Tire Services</option>
+                        <option value="auto-repair">Auto Repair</option>
+                        <option value="Snow-mobile">Snow-mobile Repair</option>
+                        <option value="Other Services">Other Services</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="vehicle">Vehicle</label>
+                    <select id="vehicle" name="vehicle">
+                        <option value="passenger-car">Passenger Car</option>
+                        <option value="van">Van</option>
+                        <option value="camper">Camper</option>
+                        <option value="light-four-wheeler">Light Four-Wheeler</option>
+                        <option value="Other Tires Services">Other Tires Services</option>
+                    </select>
+                    <p class="note">Passenger car: A regular passenger car with a maximum mass of 3,500 kg (driver's license class B, vehicle class M1 and M1G).</p>
+                </div>
+                <div class="form-group time-selection">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date">
+                    <label for="time">Time</label>
+                    <select id="time" name="time">
+                        <!-- Time options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <button type="submit" class="btn-confirm">Confirm</button>
+            </form>
+        </section>
+    </div>
+
+
+    
+
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const menu = document.querySelector('.menu');
+    
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        });
+        
+         function toggleText(contentId) {
+            const content = document.getElementById(contentId);
+            const button = content.previousElementSibling;
+
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+                button.textContent = "Read Less";
+            } else {
+                content.style.display = "none";
+                button.textContent = "Read More";
+            }
+        }
+
+
+        document.getElementById('language-select').addEventListener('change', function() {
+    const selectedLanguage = this.value;
+
+    fetch(`${selectedLanguage}.json`)
+        .then(response => response.json())
+        .then(translations => {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                element.textContent = translations[key];
+            });
+
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                element.setAttribute('placeholder', translations[key]);
+            });
+        });
+});
+
+// Initially load the default language
+document.getElementById('language-select').dispatchEvent(new Event('change'));
+
+
+    </script>
+    
+
+</body>
+</html>

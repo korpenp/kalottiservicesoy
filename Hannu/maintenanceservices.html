@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintenance Services - Kalotti Service</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="script" href="script.js">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/kalotti.webp" alt="PolarWinds Logo" class="logo-img">
+                <span class="logo-text">Kalotti Service</span>
+            </a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu">
+            <li><a href="maintenanceservices.html">Maintenance Services</a></li>
+            <li><a href="contact.html">Contact Us</a></li> 
+            <li><a href="appointment.html">Book an Appointment</a></li>
+        </ul>
+        <div class="language-selection">
+            <select>
+                <option value="en">English</option>
+                <option value="fi">Finnish</option>
+                <option value="sv">Svenska</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="services">
+        <div class="service-item" id="engine-oil" onclick="toggleText('engine-oil-content')">
+            <div class="service-title">Engine Oil Change</div>
+            <div class="service-content" id="engine-oil-content">
+                <p>Regularly changing your engine oil is crucial for maintaining the health of your engine. Fresh oil reduces friction, cools engine components, and prevents sludge build-up, ensuring your vehicle runs smoothly in all weather conditions.</p>
+            </div>
+        </div>
+        <div class="service-item" id="brake-service" onclick="toggleText('brake-service-content')">
+            <div class="service-title">Brake Service</div>
+            <div class="service-content" id="brake-service-content">
+                <p>Brake service is essential for safe driving. This includes checking brake pads, rotors, and fluid levels to ensure your vehicle stops effectively, reducing the risk of accidents.</p>
+            </div>
+        </div>
+        <div class="service-item" id="gear-oil" onclick="toggleText('gear-oil-content')">
+            <div class="service-title">Gear Oil Change</div>
+            <div class="service-content" id="gear-oil-content">
+                <p>Changing the gear oil in your transmission ensures smooth gear shifts and prolongs the life of your transmission. It helps maintain the proper lubrication of gears, reducing wear and tear.</p>
+            </div>
+        </div>
+        <div class="service-item" id="annual-maintenance" onclick="toggleText('annual-maintenance-content')">
+            <div class="service-title">Annual Maintenance</div>
+            <div class="service-content" id="annual-maintenance-content">
+                <p>Annual maintenance is a comprehensive check-up of your vehicle, covering essential systems and components. This service helps identify potential issues before they become serious problems, ensuring your vehicle remains reliable throughout the year.</p>
+            </div>
+        </div>
+        <div class="service-item" id="car-accessories" onclick="toggleText('car-accessories-content')">
+            <div class="service-title">Car Accessories</div>
+            <div class="service-content" id="car-accessories-content">
+                <p>Enhance your driving experience with a variety of car accessories. From practical add-ons like floor mats and seat covers to tech gadgets like GPS systems and dash cams, the right accessories can make your vehicle more comfortable and functional.</p>
+            </div>
+        </div>
+        <div class="service-item" id="tire-change" onclick="toggleText('tire-change-content')">
+            <div class="service-title">Tire Change</div>
+            <div class="service-content" id="tire-change-content">
+                <p>Regular tire changes are vital for safety and performance. Whether switching between summer and winter tires or replacing worn-out tires, this service ensures optimal grip and handling on the road.</p>
+            </div>
+        </div>
+        <div class="service-item" id="tire-storage" onclick="toggleText('tire-storage-content')">
+            <div class="service-title">Tire Storage</div>
+            <div class="service-content" id="tire-storage-content">
+                <p>Proper tire storage is essential for preserving the condition of your tires during off-seasons. Our tire storage service provides a safe, climate-controlled environment, preventing damage and extending the life of your tires.</p>
+            </div>
+        </div>
+        <div class="service-item" id="troubleshooting" onclick="toggleText('troubleshooting-content')">
+            <div class="service-title">Troubleshooting</div>
+            <div class="service-content" id="troubleshooting-content">
+                <p>Our expert technicians are skilled in troubleshooting a wide range of vehicle issues, from engine problems to electrical faults. Quick and accurate diagnostics ensure that the root cause of the problem is identified and fixed promptly.</p>
+            </div>
+        </div>
+        <div class="service-item" id="periodic-maintenance" onclick="toggleText('periodic-maintenance-content')">
+            <div class="service-title">Periodic Maintenance</div>
+            <div class="service-content" id="periodic-maintenance-content">
+                <p>Periodic maintenance is crucial for keeping your vehicle in top condition. Regular check-ups and servicing of key systems like the engine, transmission, and brakes help prevent unexpected breakdowns and extend the life of your car.</p>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <script src="script.js"></script>
+    <script>
+
+        // Mobile menu toggle
+const menuToggle = document.getElementById('mobile-menu');
+const menu = document.querySelector('.menu');
+
+menuToggle.addEventListener('click', () => {
+    menu.classList.toggle('open');
+    menuToggle.classList.toggle('open');
+});
+
+// Toggle service content visibility
+function toggleText(contentId) {
+    const content = document.getElementById(contentId);
+    const title = content.previousElementSibling;
+
+    if (content.style.display === "none" || content.style.display === "") {
+        content.style.display = "block";
+        title.textContent = title.textContent.replace("Read More", "Read Less");
+    } else {
+        content.style.display = "none";
+        title.textContent = title.textContent.replace("Read Less", "Read More");
+    }
+}
+
+// Initialize content to be hidden on page load
+document.addEventListener("DOMContentLoaded", () => {
+    const serviceContents = document.querySelectorAll('.service-content');
+
+    serviceContents.forEach(content => {
+        content.style.display = "none"; // Hide all service content initially
+
+        // Update the title text to include "Read More"
+        const title = content.previousElementSibling;
+        if (!title.textContent.includes("Read More")) {
+            title.textContent += " - Read More";
+        }
+    });
+});
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Service - Kalotti Service</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/kalotti1.png" alt="Kalotti Logo" class="logo-img">
+                <span class="logo-text">Kalotti Service</span>
+            </a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu">
+            <li><a href="maintenanceservices.html" data-translate="maintenanceServices">Maintenance Services</a></li>
+            <li><a href="contact.html" data-translate="contactUs">Contact Us</a></li> 
+            <li><a href="appointment.html" data-translate="bookAppointment">Book an Appointment</a></li>
+        </ul>
+        <div class="language-selection">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="fi">Finnish</option>
+                <option value="sv">Svenska</option>
+            </select>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <a href="appointment.html" class="btn-book-appointment">Book an Appointment</a>
+        </div>
+    </section>
+
+    <!-- Subscription Box -->
+    <section class="subscribe-section">
+        <h2 data-translate="subscribeNewsletter">Subscribe to Our Newsletter</h2>
+        <form>
+            <input type="email" placeholder="Enter your email" data-translate-placeholder="enterEmail">
+            <button type="submit" data-translate="subscribe">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Kalotti Services. All rights reserved.</p>
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank" class="social-icon facebook" aria-label="Facebook">
+                    <img src="images/fb.png" alt="Facebook">
+                </a>
+                <a href="https://instagram.com" target="_blank" class="social-icon instagram" aria-label="Instagram">
+                    <img src="images/insta.png" alt="Instagram">
+                </a>
+                <a href="https://twitter.com" target="_blank" class="social-icon twitter" aria-label="Twitter">
+                    <img src="images/x.png" alt="Twitter">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const menu = document.querySelector('.menu');
+
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        });
+
+
+        document.getElementById('language-select').addEventListener('change', function() {
+    const selectedLanguage = this.value;
+
+    fetch(`${selectedLanguage}.json`)
+        .then(response => response.json())
+        .then(translations => {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                element.textContent = translations[key];
+            });
+
+            document.querySelectorAll('[data-translate-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-translate-placeholder');
+                element.setAttribute('placeholder', translations[key]);
+            });
+        });
+});
+
+// Initially load the default language
+document.getElementById('language-select').dispatchEvent(new Event('change'));
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Kalotti Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="script" href="script.js">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/kalotti.webp" alt="PolarWinds Logo" class="logo-img">
+                <span class="logo-text">Kalotti Service</span>
+            </a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="menu">
+            <li><a href="maintenanceservices.html">Maintenance Services</a></li>
+            <li><a href="contact.html">Contact Us</a></li> 
+            <li><a href="appointment.html">Book an Appointment</a></li>
+        </ul>
+        <div class="language-selection">
+            <select>
+                <option value="en">English</option>
+                <option value="fi">Finnish</option>
+                <option value="sv">Svenska</option>
+            </select>
+        </div>
+    </nav>
+
+    <!-- Contact Us Form Section -->
+    <section class="contact-section">
+        <h2>Get in Touch</h2>
+        <p>If you have any questions or need assistance, please fill out the form below and we'll get back to you as soon as possible.</p>
+
+        <!-- Netlify Form with reCAPTCHA and thank-you page -->
+        <form class="contact-form" name="contact" method="POST" data-netlify="true" data-netlify-recaptcha="true" action="/thank-you.html">
+            <!-- Hidden input for form name -->
+            <input type="hidden" name="form-name" value="contact">
+            
+            <div class="form-row">
+                <div class="form-group"> 
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="category">Category of Inquiry</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Select an option</option>
+                    <option value="general">General Inquiry</option>
+                    <option value="Auto-repair">Auto-repair</option>
+                    <option value="ATV-repair">ATV-repair</option>
+                    <option value="Snow-mobile">Snow-mobile</option>
+                    <option value="Tires">Tires</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <!-- Netlify reCAPTCHA -->
+            <div data-netlify-recaptcha="true"></div>
+
+            <button type="submit" class="btn-send">Send Message</button>
+        </form>
+    </section>
+
+    <script src="script.js"></script>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const menu = document.querySelector('.menu');
+    
+        menuToggle.addEventListener('click', () => {
+            menu.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>
